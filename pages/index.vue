@@ -1,20 +1,33 @@
 <template>
-  <div class="container">
+  <div
+    class="container relative w-full bg-white min-h-screen overflow-hidden"
+    :class="{ 'sign-up-mode': signUpMode }"
+  >
     <div class="forms-container">
       <div class="signin-signup">
         <form @submit.prevent="submitLogin" class="sign-in-form">
           <h2 class="title">Sign in</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" v-model="username" placeholder="Username" />
+          <div class="input-field flex items-center">
+            <i class="fas fa-user mr-2"></i>
+            <input
+              type="text"
+              v-model="username"
+              placeholder="Username"
+              class="input-field"
+            />
           </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" v-model="password" placeholder="Password" />
+          <div class="input-field flex items-center">
+            <i class="fas fa-lock mr-2"></i>
+            <input
+              type="password"
+              v-model="password"
+              placeholder="Password"
+              class="input-field"
+            />
           </div>
           <input type="submit" value="Login" class="btn solid" />
           <p class="social-text">Or Sign in with social platforms</p>
-          <div class="social-media">
+          <div class="social-media flex">
             <a href="#" class="social-icon">
               <i class="fab fa-facebook-f"></i>
             </a>
@@ -32,21 +45,36 @@
 
         <form @submit.prevent="submitSignup" class="sign-up-form">
           <h2 class="title">Sign up</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" v-model="username" placeholder="Username" />
+          <div class="input-field flex items-center">
+            <i class="fas fa-user mr-2"></i>
+            <input
+              type="text"
+              v-model="username"
+              placeholder="Username"
+              class="input-field"
+            />
           </div>
-          <div class="input-field">
-            <i class="fas fa-envelope"></i>
-            <input type="email" v-model="email" placeholder="Email" />
+          <div class="input-field flex items-center">
+            <i class="fas fa-envelope mr-2"></i>
+            <input
+              type="email"
+              v-model="email"
+              placeholder="Email"
+              class="input-field"
+            />
           </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" v-model="password" placeholder="Password" />
+          <div class="input-field flex items-center">
+            <i class="fas fa-lock mr-2"></i>
+            <input
+              type="password"
+              v-model="password"
+              placeholder="Password"
+              class="input-field"
+            />
           </div>
           <input type="submit" class="btn" value="Sign up" />
           <p class="social-text">Or Sign up with social platforms</p>
-          <div class="social-media">
+          <div class="social-media flex">
             <a href="#" class="social-icon">
               <i class="fab fa-facebook-f"></i>
             </a>
@@ -65,25 +93,25 @@
     </div>
 
     <div class="panels-container">
-      <div class="panel left-panel">
-        <div class="content">
+      <div class="panel left-panel flex flex-col items-center justify-around">
+        <div class="content text-center">
           <h3>New here ?</h3>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
             ex ratione. Aliquid!
           </p>
-          <button class="btn transparent" @click="toggleForm">Sign up</button>
+          <button class="btn transparent" ref="signUpBtn">Sign up</button>
         </div>
         <img src="./assets/img/log.svg" class="image" alt="" />
       </div>
-      <div class="panel right-panel">
-        <div class="content">
+      <div class="panel right-panel flex flex-col items-center justify-around">
+        <div class="content text-center">
           <h3>One of us ?</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
             laboriosam ad deleniti.
           </p>
-          <button class="btn transparent" @click="toggleForm">Sign in</button>
+          <button class="btn transparent" ref="signInBtn">Sign in</button>
         </div>
         <img src="./assets/img/register.svg" class="image" alt="" />
       </div>
@@ -92,16 +120,26 @@
 </template>
 
 <script>
-import '~/assets/css/style.css'
-
 export default {
   data() {
     return {
-      username: "",
-      password: "",
-      email: "",
-      showLogin: true,
+      signUpMode: false,
     };
+  },
+  mounted() {
+    const signInBtn = this.$refs.signInBtn;
+    const signUpBtn = this.$refs.signUpBtn;
+
+    signInBtn.addEventListener("click", this.handleSignInClick);
+    signUpBtn.addEventListener("click", this.handleSignUpClick);
+  },
+  methods: {
+    handleSignInClick() {
+      this.signUpMode = false;
+    },
+    handleSignUpClick() {
+      this.signUpMode = true;
+    },
   },
 };
 </script>
