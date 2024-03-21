@@ -3,9 +3,14 @@
     class="container relative w-full bg-white min-h-screen overflow-hidden"
     :class="{ 'sign-up-mode': signUpMode }"
   >
-    <div class="forms-container">
-      <div class="signin-signup">
-        <form @submit.prevent="submitLogin" class="sign-in-form">
+    <div class="forms-container absolute w-full h-full top-0 left-0">
+      <div
+        class="signin-signup absolute top-1/2 left-3/4 transform -translate-x-1/2 -translate-y-1/2 w-1/2 transition duration-1000 ease-in-out grid grid-cols-1 z-5"
+      >
+        <form
+          @submit.prevent="submitLogin"
+          class="sign-in-form flex items-center justify-center flex-col p-0 5rem transition-all duration-200 ease-in-out overflow-hidden col-span-1 row-span-1"
+        >
           <h2 class="title">Sign in</h2>
           <div class="input-field flex items-center">
             <i class="fas fa-user mr-2"></i>
